@@ -10,20 +10,30 @@
  */
 angular
   .module('slimApp', [
-    'ngAnimate',
     'ngCookies',
     'ngSanitize',
     'ngTouch',
-    'ui.router'
+    'ui.router',
+    'ui.bootstrap',
+    'categoryService',
+    'angular-loading-bar',
+    'ngAnimate',
+    'angularUtils.directives.dirPagination'
+
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home',{
+      .state('home', {
         url: '/home',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
-    })
+      })
+      .state('admin', {
+        url: '/admin',
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl'
+      })
   })
-  .run(function($state){
+  .run(function ($state) {
     $state.transitionTo('home');
   });

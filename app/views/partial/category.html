@@ -1,0 +1,38 @@
+<h3>Category{{page.pageSize}}</h3>
+<table class="table table-bordered">
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>Active</th>
+		<th>Order</th>
+		<th>Action</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr dir-paginate="cat in category | filter:page.filter | itemsPerPage: page.pageSize" current-page="page.currentPage">
+		<td ng-bind="cat.categoryName"></td>
+		<td ng-bind="cat.isEnable ==0 ?'Inactive':'Active' "></td>
+		<td ng-bind="cat.sortOrder"></td>
+		<td></td>
+	</tr>
+	</tbody>
+</table>
+<input type="number" min="1" max="100" class="form-control" ng-model="page.pageSize">
+<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../bower_components/angularUtils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+<h3>Create new category</h3>
+<div class="col-md-4">
+	<form ng-submit="saveCategory()" name="catForm" novalidate>
+		<div class="form-group">
+			<label>Category name</label>
+			<input name="name" ng-model="formData.name" type="text" class="form-control" required>
+			<span class="text-danger" ng-show="catForm.name.$invalid && !catForm.name.$pristine">Category name is required.</span>
+		</div>
+		<div class="form-group">
+			<label>Order</label>
+			<input pattern="\d*"  name="order" ng-model="formData.order" type="text" class="form-control" required>
+			<span class="text-danger" class="text-danger" ng-show="catForm.order.$error.required && !catForm.order.$pristine">Order is required </span>
+			<span class="text-danger" class="text-danger" ng-show="catForm.order.$error.pattern">Number only</span>
+		</div>
+		<button  ng-disabled="catForm.$invalid" type="submit" class="btn btn-success">Submit</button>
+	</form>
+</div>

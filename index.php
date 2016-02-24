@@ -64,7 +64,7 @@ $app->post('/updateCategory', function () use ($app) {
     try {
         $db = getDB();
         $sth = $db->prepare("UPDATE category set categoryName=?, isEnable=?, sortOrder=? WHERE id=?");
-        $sth->execute(array($name, $isEnable, $sortOrder,$id));
+        $sth->execute(array($name, $isEnable, $sortOrder, $id));
         $app->response->setStatus(200);
         $app->response()->headers->set('Content-Type', 'application/json');
         echo json_encode(array("status" => "success", "code" => 1));
@@ -81,12 +81,16 @@ $app->post('/updateCategory', function () use ($app) {
  */
 $app->post('/createCategory', function () use ($app) {
 
-    $allPostVars = $app->request->post();
-    $name = $allPostVars['categoryName'];
+
+    $json = $app->request->getBody();
+     $data =json_decode($json, true);
+    $name = $data['name'];
+    $sortOrder =(int)$data['order'];
+
     try {
         $db = getDB();
-        $sth = $db->prepare("INSERT INTO category (categoryName) VALUES (?)");
-        $sth->execute(array($name));
+        $sth = $db->prepare("INSERT INTO category (categoryName, sortOrder) VALUES (?,?)");
+        $sth->execute(array($name, $sortOrder));
         $app->response->setStatus(200);
         $app->response()->headers->set('Content-Type', 'application/json');
         echo json_encode(array("status" => "success", "code" => 1));
@@ -108,7 +112,7 @@ $app->get('/getAllProduct', function () use ($app) {
         $db = getDB();
         $sth = $db->query("SELECT * FROM product");
         $product = $sth->fetchAll(PDO::FETCH_OBJ);
-        if($product) {
+        if ($product) {
             $app->response->setStatus(200);
             $app->response()->headers->set('Content-Type', 'application/json');
             echo '{"products": ' . json_encode($product) . '}';
