@@ -13,7 +13,8 @@ angular.module('slimApp')
     $scope.page ={
       currentPage: 1,
       pageSize: 10,
-      filter:''
+      filter:'',
+      options: [10,15,20]
     };
     function getAllCategory() {
       categoryFactory.getAllCategory().then(function (resp) {
@@ -31,5 +32,9 @@ angular.module('slimApp')
       categoryFactory.createCategory($scope.formData).then(function(resp){
         getAllCategory();
       })
-    }
+    };
+    //$scope.addAnimate = function(){
+    //  $('#tableCategory').removeClass('animated fadeInUp');
+    //  $('#tableCategory').addClass('animated fadeInUp');
+    //}
   }]);
