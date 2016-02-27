@@ -54,12 +54,13 @@ $app->get('/category', function () {
  * update category
  */
 $app->post('/updateCategory', function () use ($app) {
+    $json = $app->request->getBody();
 
-    $allPostVars = $app->request->post();
-    $id = (int)$allPostVars['id'];
-    $name = $allPostVars['categoryName'];
-    $isEnable = (int)$allPostVars['isEnable'];
-    $sortOrder = (int)$allPostVars['sortOrder'];
+    $data =json_decode($json, true);
+    $id = (int)$data['id'];
+    $name = $data['categoryName'];
+    $isEnable = (int)$data['isEnable'];
+    $sortOrder = (int)$data['sortOrder'];
 
     try {
         $db = getDB();
@@ -80,7 +81,6 @@ $app->post('/updateCategory', function () use ($app) {
  * create category
  */
 $app->post('/createCategory', function () use ($app) {
-
 
     $json = $app->request->getBody();
      $data =json_decode($json, true);

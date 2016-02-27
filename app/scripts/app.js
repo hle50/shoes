@@ -18,8 +18,9 @@ angular
     'categoryService',
     'angular-loading-bar',
     'ngAnimate',
-    'angularUtils.directives.dirPagination'
-
+    'angularUtils.directives.dirPagination',
+    'angularMoment',
+    'toastr'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

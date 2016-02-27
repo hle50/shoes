@@ -13,7 +13,12 @@ categoryFactory.factory('categoryFactory', ['$http', 'constants', function ($htt
     return $http.post(constants.api + 'createCategory', data);
   }
 
+  function updateCategory(data) {
+    return $http.post(constants.api + 'updateCategory', data);
+  }
+
   service.getAllCategory = getAllCategory;
   service.createCategory = createCategory;
+  service.updateCategory = updateCategory;
   return service;
 }]);

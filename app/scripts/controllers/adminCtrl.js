@@ -8,7 +8,7 @@
  * Controller of the slimApp
  */
 angular.module('slimApp')
-  .controller('AdminCtrl', ['categoryFactory', '$scope', function (categoryFactory, $scope) {
+  .controller('AdminCtrl', ['categoryFactory', '$scope', 'toastr', function (categoryFactory, $scope, toastr) {
 
     $scope.page = {
       currentPage: 1,
@@ -35,7 +35,11 @@ angular.module('slimApp')
 
     $scope.saveCategory = function () {
       categoryFactory.createCategory($scope.formData).then(function (resp) {
-        getAllCategory();
+        if (resp.data.code === 1) {
+          toastr.info('Create category successfully', 'Success');
+          getAllCategory();
+        }
+
       })
     };
     $scope.eidtCateogry = function (catSelected) {
@@ -51,9 +55,30 @@ angular.module('slimApp')
         return o.id === obj.id;
       }).isSelected = false;
     };
-    $scope.onlyNumbers =/^\d+$/;
-    //$scope.addAnimate = function(){
-    //  $('#tableCategory').removeClass('animated fadeInUp');
-    //  $('#tableCategory').addClass('animated fadeInUp');
-    //}
+
+    $scope.updateCategory = function () {
+      if(!$scope.editItem.sortOrder ||  !$scope.editItem.categoryName){
+        toastr.error('Fill in all field', 'Error');
+        return;
+      }
+
+      toastr.info('Updating category', 'Info!');
+      var data = {
+        id: $scope.editItem.id,
+        categoryName: $scope.editItem.categoryName,
+        isEnable: $scope.editItem.isEnable,
+        sortOrder: $scope.editItem.sortOrder
+      };
+      categoryFactory.updateCategory(data).then(function (resp) {
+        console.log(resp);
+        if (resp.data.code === 1) {
+          toastr.success('Updating category successfully', 'Success');
+          getAllCategory();
+        }
+
+        $scope.cancel();
+      })
+    };
+
+
   }]);
