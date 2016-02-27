@@ -11,10 +11,11 @@
 	<!-- endbower -->
 	<!-- endbuild -->
 	<!-- build:css(.tmp) styles/main.css -->
-	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
-	<link rel="stylesheet" href="../bower_components/angular-loading-bar/build/loading-bar.css" media='all' />
-	<link rel="stylesheet" href="../bower_components/animate.css/animate.css" media='all' />
-	<link rel="stylesheet" href="styles/main.css" />
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+	<link rel="stylesheet" href="../bower_components/angular-loading-bar/build/loading-bar.css" media='all'/>
+	<link rel="stylesheet" href="../bower_components/animate.css/animate.css" media='all'/>
+	<link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" media='all'/>
+	<link rel="stylesheet" href="styles/main.css"/>
 	<!-- endbuild -->
 </head>
 <body ng-app="slimApp">
@@ -41,7 +42,7 @@
 			<div class="collapse navbar-collapse" id="js-navbar-collapse">
 
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#/">Home</a></li>
+					<li class="active"><a ui-sref="home">Home</a></li>
 					<li><a ng-href="#/about">About</a></li>
 					<li><a ng-href="#/">Contact</a></li>
 					<li><a ui-sref="admin">Admin</a></li>
@@ -82,6 +83,7 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/lodash/dist/lodash.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="../bower_components/angular/angular.js"></script>
 <script src="../bower_components/angular-animate/angular-animate.js"></script>
