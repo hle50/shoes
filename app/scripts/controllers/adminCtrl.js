@@ -23,7 +23,7 @@ angular.module('slimApp')
     function getAllCategory() {
       categoryFactory.getAllCategory().then(function (resp) {
         $scope.category = resp.data.categories;
-        $scope.categoryCopy = angular.copy($scope.category);
+        //$scope.categoryCopy = angular.copy($scope.category);
       })
     }
 
@@ -38,6 +38,20 @@ angular.module('slimApp')
         getAllCategory();
       })
     };
+    $scope.eidtCateogry = function (catSelected) {
+      if ($scope.editItem) {
+        $scope.cancel();
+      }
+      catSelected.isSelected = true;
+      $scope.editItem = angular.copy(catSelected);
+    };
+    $scope.cancel = function () {
+      var obj = $scope.editItem;
+      _.find($scope.category, function (o) {
+        return o.id === obj.id;
+      }).isSelected = false;
+    };
+    $scope.onlyNumbers =/^\d+$/;
     //$scope.addAnimate = function(){
     //  $('#tableCategory').removeClass('animated fadeInUp');
     //  $('#tableCategory').addClass('animated fadeInUp');
