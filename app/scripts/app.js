@@ -20,7 +20,8 @@ angular
     'ngAnimate',
     'angularUtils.directives.dirPagination',
     'angularMoment',
-    'toastr'
+    'toastr',
+    'ngFileUpload'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

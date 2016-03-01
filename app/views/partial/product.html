@@ -1,0 +1,83 @@
+<h3>
+	Product
+</h3>
+
+
+<form name="product">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="form-group ">
+				<label>Product name </label>
+				<input class="form-control" type="text" ng-model="page.filter"/>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label>Category name</label>
+				<select class="form-control">
+					<option></option>
+				</select>
+			</div>
+			</div>
+		<div class="col-md-3">
+			<div class="form-group ">
+				<label>Price </label>
+				<input class="form-control" type="text" ng-model="page.filter"/>
+			</div>
+			</div>
+		<div class="col-md-3">
+			<div class="form-group ">
+				<label>Discount </label>
+				<input class="form-control" type="text" ng-model="page.filter"/>
+			</div>
+			</div>
+
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+
+
+				<div  ngf-select="" ngf-drop="" ng-model="vm.user.picFile"
+							ngf-model-invalid="vm.errorFiles" ngf-max-size="1MB"
+							ngf-accept="'image/*'" ngf-pattern="'image/*'"
+							class="drop-box" ngf-drop-available="dropAvailable">Select File
+					<span ng-show="dropAvailable"> or Drop File (max size: 1MB)</span>
+				</div>
+				<div class="help-block" ng-show="vm.errorFiles.length">
+					Invalid file type or file size too large
+				</div>
+
+
+			<div class="m-t-md">
+				<img ng-show="vm.frm.file.$valid && vm.user.picFile.result.Status"
+						 ngf-thumbnail="vm.user.picFile" class="img-responsive">
+				<br/>
+				<br/>
+
+				<div ng-show="vm.user.picFile.progress >= 0 && vm.user.picFile.progress<100.0">
+					<span>Upload status:</span>
+					<uib-progressbar
+							ng-class="!vm.errorMsg && vm.user.picFile.result ? '' :'progress-striped active'"
+							value="vm.user.picFile.progress"
+							type="success">{{vm.user.picFile.progress}}%
+					</uib-progressbar>
+
+					<!--<span ng-show="!vm.errorMsg && vm.user.picFile.result && vm.user.picFile.result.Status">Upload successful</span>-->
+				</div>
+			</div>
+
+			<!--<div ng-show="vm.frm.file.$invalid && vm.frm.file.$dirty || vm.errorMsg" class="has-error">-->
+			<!--<span ng-show="vm.frm.file.$error.maxSize" class="help-block">-->
+			<!--File too large-->
+			<!--{{(vm.errorFiles[0].size / 1048576.0)| number:2}}MB, max 1M-->
+			<!--</span>-->
+			<!--<span ng-show="vm.frm.file.$error.required" class="help-block">-->
+			<!--Please upload an image-->
+			<!--</span>-->
+			<!--<span ng-show="vm.errorMsg && vm.frm.file.$valid" class="help-block">-->
+			<!--{{vm.errorMsg}}-->
+			<!--</span>-->
+			<!--</div>-->
+		</div>
+	</div>
+</form>

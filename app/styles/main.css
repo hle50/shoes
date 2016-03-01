@@ -99,3 +99,9 @@ body {
 body {
     overflow-y: scroll;
 }
+.drop-box{
+    border: 4px dashed #00858a;
+    line-height: 100px;
+    text-align: center;
+    font-weight: bold;
+}
